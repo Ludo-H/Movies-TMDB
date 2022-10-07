@@ -7,15 +7,25 @@ import Button from '../UI/Button';
 const Connect = () => {
     // state pour gérer l'affichage login/signup
     /***************************************************************/
-    const [isLogin, setIsLogin] = useState(true)
+    const [loginButton, setLoginButton] = useState(true)
+    const [signUpButton, setSignUpButton] = useState(false)
     /***************************************************************/
 
 
     // Logique de la modale connexion
     /***************************************************************/
-    const switchAuthModeHandler = () => {
-        setIsLogin((prevState) => !prevState);
-      };
+    const handleLogin = () => {
+        setLoginButton(true);
+        setSignUpButton(false);
+    }
+    /***************************************************************/
+
+    // Logique de la modale s'inscrire
+    /***************************************************************/
+    const handleSignUp = () => {
+        setSignUpButton(true);
+        setLoginButton(false);
+    }
     /***************************************************************/
 
     return (
@@ -24,15 +34,16 @@ const Connect = () => {
             <div className='connect__container content'>
                 <h1>Movies</h1>
                 <div className='connect__container__buttons'>
-                    <Button onClick={switchAuthModeHandler}>
+                    <Button onClick={handleLogin}>
                         Se connecter
                     </Button>
-                    <Button onClick={switchAuthModeHandler}>
+                    <Button onClick={handleSignUp}>
                         S'inscrire
                     </Button>
                 </div>
                 <div className='connect__container__modal'>
-                    {isLogin ? <Login/> : <SignUp/>}
+                    {loginButton && <Login />}
+                    {signUpButton && <SignUp />}
                 </div>
             </div>
         </Fragment>

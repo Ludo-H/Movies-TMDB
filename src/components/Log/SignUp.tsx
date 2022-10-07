@@ -53,7 +53,6 @@ const SignUp = () => {
                         required : true
                     }}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => setDisplayName(e.target.value)}
-                    
                 />
                 <Input
                 input={{
