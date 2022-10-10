@@ -6,6 +6,7 @@ import Error from '../Pages/Error';
 import Favorites from '../Pages/Favorites';
 import Profil from '../Pages/Profil';
 import ComingSoon from '../Pages/ComingSoon';
+import Settings from '../Pages/Settings';
 
 const Index = () => {
     return (
@@ -16,6 +17,7 @@ const Index = () => {
                 <Route path='/favorites' element={<Favorites/>} />
                 <Route path='/profile' element={<Profil/>} />
                 <Route path='/comingsoon' element={<ComingSoon/>} />
+                <Route path='/settings' element={<Settings/>} />
                 <Route path='*' element={<Error/>} />
             </Routes>
         </Router>
