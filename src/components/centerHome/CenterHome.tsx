@@ -1,24 +1,55 @@
 import axios from 'axios';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import NavTypesMovies from '../NavTypesMovies';
+
+type popularMovies = {
+    adult: boolean;
+    backdrop_path: string;
+    genre_ids: number[];
+    id: number;
+    original_language: string;
+    original_title: string;
+    overview: string;
+    popularity: number;
+    poster_path: string;
+    release_date: string;
+    title: string;
+    video: boolean;
+    vote_average: number;
+    vote_count: number;
+}
 
 const CenterHome = () => {
 
-    
-    const tryTest = async ()=>{
-        try {
-            const data = await axios.get('https://api.themoviedb.org/3/discover/movie?api_key=7f0321762d318ddbe8df744bdf0c00ce&sort_by=popularity.desc');
-            console.log(data);
+    const [popularMovies, setPopularMovies] = useState<popularMovies[]>();
 
-        } catch (error) {
-            console.log(error)
+    useEffect(() => {
+        const fetchPopularMovies = async ()=>{
+            try {
+                const data = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY_TMDB}&sort_by=popularity.desc`);
+                console.log(data.data.results);
+                setPopularMovies(data.data.results);
+    
+            } catch (error) {
+                console.log(error)
+            }
         }
-    }
-    tryTest();
+        fetchPopularMovies();
+    }, [])
+    
+    
+    
 
     return (
         <div>
             <NavTypesMovies/>
+            {popularMovies && popularMovies.map((movie)=>{
+                return(
+                    <div key={movie.id}>
+                        <img src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`} alt="" />
+                    </div>
+                )
+            })}
         </div>
     );
 };
