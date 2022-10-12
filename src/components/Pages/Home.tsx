@@ -5,7 +5,7 @@ import RightSideBar from '../RightSideBar';
 
 const Home = () => {
     return (
-        <div>
+        <div className='home__container'>
             <LeftSideBar/>
             <CenterHome/>
             <RightSideBar/>

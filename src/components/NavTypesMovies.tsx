@@ -1,11 +1,17 @@
 import React from 'react';
 
-const NavTypesMovies = () => {
+type Props = {
+    setTvSeries: () => void,
+    setAnimes: () => void,
+    setMovies: () => void
+}
+
+const NavTypesMovies: React.FC<Props> = (props) => {
     return (
-        <nav>
-            <li>TV Series</li>
-            <li>Movies</li>
-            <li>Animes</li>
+        <nav className='nav-types-movies'>
+            <li onClick={() => props.setTvSeries()}>TV Series</li>
+            <li onClick={() => props.setMovies()}>Movies</li>
+            <li onClick={() => props.setAnimes()}>Animes</li>
         </nav>
     );
 };

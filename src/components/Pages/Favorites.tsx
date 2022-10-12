@@ -1,9 +1,11 @@
 import React from 'react';
+import LeftSideBar from '../LeftSideBar';
+// changer classe container !!!!!
 
 const Favorites = () => {
     return (
-        <div>
-            
+        <div className='home__container'> 
+            <LeftSideBar/>
         </div>
     );
 };

@@ -1,0 +1,21 @@
+.nav-types-movies{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+    padding-top: 40px;
+
+    li{
+        margin-right: 20px;
+        color: $color-2;
+        font-weight: 600;
+        font-size: 13px;
+        margin-left: 10px;
+        transition: 0.2s;
+
+        &:hover{
+            cursor: pointer;
+            transform: scale(1.05);
+        }
+    }
+}

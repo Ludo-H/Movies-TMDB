@@ -1,0 +1,4 @@
+.home__container{
+    @include flexSpaceBetween;
+    align-items: start;
+}

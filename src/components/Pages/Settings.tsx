@@ -1,9 +1,12 @@
 import React from 'react';
+import LeftSideBar from '../LeftSideBar';
+
+// changer classse container !!!
 
 const Settings = () => {
     return (
-        <div>
-            
+        <div className='home__container'>
+            <LeftSideBar/>
         </div>
     );
 };

@@ -11,34 +11,38 @@ const LeftSideBar = () => {
     }
 
     return (
-        <div>
-            <div className='logo'>
+        <div className='left-side-bar'>
+            <div className='left-side-bar__logo'>
                 <i className="fa-solid fa-clapperboard"></i>
                 <h2>Movies</h2>
             </div>
             <nav>
                 <ul>
                     <h3>Menu</h3>
-                    <div className='leftSideBar-item'>
-                        <i className="fa-solid fa-house"></i>
+                    <li className='left-side-bar__item'>
                         <NavLink to='/home'>Home</NavLink>
-                    </div>
-                    <div className='leftSideBar-item'>
-                        <i className="fa-solid fa-hourglass-end"></i>
+                        <i className="fa-solid fa-house"></i>
+                        <div/>
+                    </li>
+                    <li className='left-side-bar__item'>
                         <NavLink to='/comingsoon'>Coming soon</NavLink>
-                    </div>
-                    <div className='leftSideBar-item'>
-                        <i className="fa-solid fa-star"></i>
+                        <i className="fa-solid fa-hourglass-end"></i>
+                        <div/>
+                    </li>
+                    <li className='left-side-bar__item'>
                         <NavLink to='/favorites'>Favorites</NavLink>
-                    </div>
+                        <i className="fa-solid fa-star"></i>
+                        <div/>
+                    </li>
                     <h3>General</h3>
-                    <div className='leftSideBar-item'>
-                        <i className="fa-solid fa-gear"></i>
+                    <li className='left-side-bar__item'>
                         <NavLink to='/settings'>Settings</NavLink>
-                    </div>
-                    <div className='leftSideBar-item'>
+                        <i className="fa-solid fa-gear"></i>
+                        <div/>
+                    </li>
+                    <li className='left-side-bar__item'>
                         <i onClick={handleLogout} className="fa-solid fa-right-from-bracket">Logout</i>
-                    </div>
+                    </li>
                 </ul>
             </nav>
         </div>
