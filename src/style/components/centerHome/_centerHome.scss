@@ -1,0 +1,30 @@
+.popular-item{
+    margin: 0 10px;
+    img{
+        height: 350px;
+        object-fit: fill;
+        border-radius: 50px;
+        box-shadow: 0px 0px 10px 1px $white;
+    }
+}
+
+.testcarousel{
+    border-radius: 50px;
+    overflow: hidden;
+    box-shadow: 0px 0px 5px 1px $black;
+    background-color: $black;
+    animation: appear 0.2s ease forwards;
+}
+
+.center-home{
+    width: 650px;
+}
+
+@keyframes appear {
+    0%{
+        transform: scale(0);
+    }
+    100%{
+        transform: scale(1);
+    }
+}

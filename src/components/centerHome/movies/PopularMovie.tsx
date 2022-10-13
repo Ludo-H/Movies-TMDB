@@ -23,7 +23,7 @@ type Props = {
 
 const PopularMovie: React.FC<Props> = (props) => {
     return (
-        <div className='popular-movie'>
+        <div className='popular-item'>
             <img src={`https://image.tmdb.org/t/p/w400/${props.movie.poster_path}`} alt="movie poster" />
         </div>
     );

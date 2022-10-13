@@ -64,6 +64,15 @@ textarea {
   padding: 0px 15px;
   font-weight: bold;
   height: 30px;
+  border: 1px solid $color-1;
+  color: $color-1;
+}
+
+input{
+  &:focus{
+    background-color: $greyLight;
+
+  }
 }
 
 textarea {

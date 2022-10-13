@@ -5,6 +5,11 @@
     margin-bottom: 20px;
     padding-top: 40px;
 
+    ul{
+        display: flex;
+        align-items: center;
+    }
+
     li{
         margin-right: 20px;
         color: $color-2;
@@ -16,6 +21,11 @@
         &:hover{
             cursor: pointer;
             transform: scale(1.05);
+        }
+
+        &.active{
+            color: $black;
+            font-size: 16px;
         }
     }
 }

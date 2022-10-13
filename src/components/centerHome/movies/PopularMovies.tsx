@@ -28,8 +28,7 @@ const PopularMovies = () => {
     useEffect(() => {
         const fetchPopularMovies = async () => {
             try {
-                const data = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY_TMDB}&sort_by=popularity.desc`);
-                console.log(data.data.results);
+                const data = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY_TMDB}&sort_by=vote_count.desc`);
                 setPopularMovies(data.data.results);
 
             } catch (error) {
