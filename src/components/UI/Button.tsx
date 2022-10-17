@@ -1,8 +1,8 @@
 import React from 'react';
 
 interface Props {
-    children: JSX.Element |string,
-    onClick: () => void
+    children?: JSX.Element |string,
+    onClick?: () => void
 };
 
 const Button: React.FC<Props> = (props) => {

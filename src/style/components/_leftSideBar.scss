@@ -6,6 +6,8 @@
     border-right: 1px solid $color-2;
     height: 100vh;
     padding: 40px 0 0 30px;
+    position: sticky;
+    top: 0;
 
     &__logo{
         display: flex;

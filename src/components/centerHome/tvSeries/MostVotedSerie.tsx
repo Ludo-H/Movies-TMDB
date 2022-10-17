@@ -1,6 +1,8 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
+import Card from '../../UI/Card';
 
-type popularSerie = {
+type mostVotedSerie = {
     adult: boolean;
     backdrop_path: string;
     genre_ids: number[];
@@ -18,15 +20,17 @@ type popularSerie = {
 }
 
 type Props = {
-    serie: popularSerie,
+    serie: mostVotedSerie,
 }
 
-const PopularSerie: React.FC<Props> = (props) => {
+const MostVotedSerie: React.FC<Props> = (props) => {
     return (
-        <div className='popular-item'>
+        <NavLink to={`/tv/${props.serie.id}`}>
+        <Card className='popular-item'>
             <img src={`https://image.tmdb.org/t/p/w400/${props.serie.poster_path}`} alt="serie poster" />
-        </div>
+        </Card>
+        </NavLink>
     );
 };
 
-export default PopularSerie;
+export default MostVotedSerie;

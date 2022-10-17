@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import PopularAnime from './PopularAnime';
+import MostVotedSerie from './MostVotedSerie';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.css';
 
-type popularAnimes = {
+
+type mostVotedSeries = {
     adult: boolean;
     backdrop_path: string;
     genre_ids: number[];
@@ -21,21 +22,21 @@ type popularAnimes = {
     vote_count: number;
 }
 
-const PopularAnimes = () => {
+const MostVotedSeries = () => {
 
-    const [popularAnimes, setPopularAnimes] = useState<popularAnimes[]>();
+    const [mostVotedSeries, setMostVotedSeries] = useState<mostVotedSeries[]>();
 
     useEffect(() => {
-        const fetchPopularAnimes = async () => {
+        const fetchMostVotedSeries = async () => {
             try {
-                const data = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY_TMDB}&with_genres=16&sort_by=vote_count.desc`);
-                setPopularAnimes(data.data.results);
+                const data = await axios.get(`https://api.themoviedb.org/3/discover/tv?api_key=${process.env.REACT_APP_API_KEY_TMDB}&language=en-US&sort_by=vote_count.desc`);
+                setMostVotedSeries(data.data.results);
 
             } catch (error) {
                 console.log(error)
             }
         }
-        fetchPopularAnimes();
+        fetchMostVotedSeries();
     }, [])
 
     return (
@@ -48,13 +49,13 @@ const PopularAnimes = () => {
             centerSlidePercentage={50}	
             infiniteLoop
         >
-            {popularAnimes && popularAnimes.map((anime) => {
+            {mostVotedSeries && mostVotedSeries.map((serie) => {
                 return (
-                    <PopularAnime key={anime.id} anime={anime} />
+                    <MostVotedSerie key={serie.id} serie={serie} />
                 )
             })}
         </Carousel>
     );
 };
 
-export default PopularAnimes;
+export default MostVotedSeries;

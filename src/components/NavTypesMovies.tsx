@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 
 type Props = {
     setTvSeries: () => void,
-    setAnimes: () => void,
     setMovies: () => void
 }
 
@@ -10,8 +9,7 @@ const NavTypesMovies: React.FC<Props> = (props) => {
 
     const [active, setActive] = useState({
         tvSeries: false,
-        movies: true,
-        animes: false
+        movies: true
     })
 
     return (
@@ -21,8 +19,7 @@ const NavTypesMovies: React.FC<Props> = (props) => {
                     props.setTvSeries();
                     setActive({
                         tvSeries: true,
-                        movies: false,
-                        animes: false
+                        movies: false
                     })
                 }}>
                     TV Series
@@ -31,21 +28,10 @@ const NavTypesMovies: React.FC<Props> = (props) => {
                     props.setMovies();
                     setActive({
                         tvSeries: false,
-                        movies: true,
-                        animes: false
+                        movies: true
                     })
                 }}>
                     Movies
-                </li>
-                <li className={active.animes ? 'active' : ''} onClick={() => {
-                    props.setAnimes();
-                    setActive({
-                        tvSeries: false,
-                        movies: false,
-                        animes: true
-                    })
-                }}>
-                    Animes
                 </li>
             </ul>
         </nav>

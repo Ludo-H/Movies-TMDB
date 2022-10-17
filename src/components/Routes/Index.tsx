@@ -4,9 +4,9 @@ import Connect from '../Pages/Connect';
 import Home from '../Pages/Home';
 import Error from '../Pages/Error';
 import Favorites from '../Pages/Favorites';
-import Profil from '../Pages/Profil';
 import ComingSoon from '../Pages/ComingSoon';
 import Settings from '../Pages/Settings';
+import Item from '../Pages/Item';
 
 const Index = () => {
     return (
@@ -15,6 +15,7 @@ const Index = () => {
                 <Route path='/' element={<Connect/>} />
                 <Route path='/home' element={<Home/>} />
                 <Route path='/favorites' element={<Favorites/>} />
+                <Route path='/:type/:id' element={<Item/>} />
                 {/* <Route path='/profile' element={<Profil/>} /> */}
                 <Route path='/comingsoon' element={<ComingSoon/>} />
                 <Route path='/settings' element={<Settings/>} />

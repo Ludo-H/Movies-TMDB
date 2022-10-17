@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import PopularSerie from './PopularSerie';
+import MostVotedMovie from './MostVotedMovie';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.css';
 
-
-type popularSeries = {
+type mostVotedMovies = {
     adult: boolean;
     backdrop_path: string;
     genre_ids: number[];
@@ -22,22 +21,23 @@ type popularSeries = {
     vote_count: number;
 }
 
-const PopularSeries = () => {
+const MostVotedMovies = () => {
 
-    const [popularSeries, setPopularSeries] = useState<popularSeries[]>();
+    const [mostVotedMovies, setMostVotedMovies] = useState<mostVotedMovies[]>();
 
     useEffect(() => {
-        const fetchPopularSeries = async () => {
+        const fetchMostVotedMovies = async () => {
             try {
-                const data = await axios.get(`https://api.themoviedb.org/3/discover/tv?api_key=${process.env.REACT_APP_API_KEY_TMDB}&language=en-US&sort_by=vote_count.desc`);
-                setPopularSeries(data.data.results);
+                const data = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY_TMDB}&sort_by=vote_count.desc`);
+                setMostVotedMovies(data.data.results);
 
             } catch (error) {
                 console.log(error)
             }
         }
-        fetchPopularSeries();
+        fetchMostVotedMovies();
     }, [])
+
 
     return (
         <Carousel
@@ -49,13 +49,13 @@ const PopularSeries = () => {
             centerSlidePercentage={50}	
             infiniteLoop
         >
-            {popularSeries && popularSeries.map((serie) => {
+            {mostVotedMovies && mostVotedMovies.map((movie) => {
                 return (
-                    <PopularSerie key={serie.id} serie={serie} />
+                    <MostVotedMovie key={movie.id} movie={movie} />
                 )
             })}
         </Carousel>
     );
 };
 
-export default PopularSeries;
+export default MostVotedMovies;

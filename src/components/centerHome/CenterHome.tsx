@@ -1,40 +1,30 @@
 import { useState } from 'react';
 import NavTypesMovies from '../NavTypesMovies';
-import PopularAnimes from './animes/PopularAnimes';
-import PopularMovies from './movies/PopularMovies';
-import PopularSeries from './tvSeries/PopularSeries';
+import Movies from './movies/Movies';
+import Series from './tvSeries/Series';
 
 const CenterHome = () => {
 
     const [tvSeries, setTvSeries] = useState(false);
     const [movies, setMovies] = useState(true);
-    const [animes, setAnimes] = useState(false);
 
     const moviesHandler = ()=>{
         setMovies(true);
-        setAnimes(false);
         setTvSeries(false);
     }
 
-    const animesHandler = ()=>{
-        setMovies(false);
-        setAnimes(true);
-        setTvSeries(false);
-    }
 
     const tvSeriesHandler = ()=>{
         setMovies(false);
-        setAnimes(false);
         setTvSeries(true);
     }
     
     return (
         <div className='center-home'>
-            <NavTypesMovies setTvSeries={tvSeriesHandler} setAnimes={animesHandler} setMovies={moviesHandler}/>
+            <NavTypesMovies setTvSeries={tvSeriesHandler} setMovies={moviesHandler}/>
             <p>Les plus votés !</p>
-            {tvSeries && <PopularSeries/>}
-            {movies && <PopularMovies/>}
-            {animes && <PopularAnimes/>}   
+            {tvSeries && <Series/>}
+            {movies && <Movies/>}
         </div>
     );
 };
