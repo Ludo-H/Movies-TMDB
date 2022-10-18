@@ -1,0 +1,19 @@
+.carousel-mostVoted{
+    border-radius: 50px;
+    overflow: hidden;
+    background-color: $black;
+    animation: appear 0.2s ease forwards;
+
+    &:hover{
+        box-shadow: 0px 0px 5px 1px $black;
+    }
+}
+
+@keyframes appear {
+    0%{
+        transform: scale(0);
+    }
+    100%{
+        transform: scale(1);
+    }
+}

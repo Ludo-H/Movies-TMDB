@@ -3,6 +3,7 @@ import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.css';
 import axios from 'axios';
 import Card from '../../UI/Card';
+import { NavLink } from 'react-router-dom';
 
 type categorieSerie = {
     id: number;
@@ -49,22 +50,24 @@ const CategorieSerie: React.FC<Props> = (props) => {
     }, [props.categorie.id])
 
     return (
-        <div>
+        <div className='categorie__container'>
             <p>{props.categorie.name}</p>
             <Carousel
-                // className='testcarousel'
-                width={850}
+                className='carousel-categorie'
+                width={750}
                 showThumbs={false}
                 showStatus={false}
                 centerMode
-                centerSlidePercentage={50}
+                centerSlidePercentage={25}
                 infiniteLoop
             >
                 {categorieData && categorieData.map((serie) => {
                     return (
-                        <Card key={serie.id}>
-                            <img src={`https://image.tmdb.org/t/p/w400/${serie.poster_path}`} alt="poster" />
-                        </Card>
+                        <NavLink key={serie.id} to={`/tv/${serie.id}`} >
+                            <Card className="categorie-item">
+                                <img src={`https://image.tmdb.org/t/p/w400/${serie.poster_path}`} alt="poster" />
+                            </Card>
+                        </NavLink>
                     )
                 })}
             </Carousel>

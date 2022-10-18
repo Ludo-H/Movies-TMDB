@@ -22,7 +22,7 @@ const CenterHome = () => {
     return (
         <div className='center-home'>
             <NavTypesMovies setTvSeries={tvSeriesHandler} setMovies={moviesHandler}/>
-            <p>Les plus votés !</p>
+            <p>Les plus votés</p>
             {tvSeries && <Series/>}
             {movies && <Movies/>}
         </div>

@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import Routes from './components/Routes/Index';
 
 const App = () => {
+
   return (
     <Fragment>
       <Routes/>

@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import TypeClickedContext from "../store/typeClicked-context";
 
 type Props = {
     setTvSeries: () => void,
@@ -12,6 +13,8 @@ const NavTypesMovies: React.FC<Props> = (props) => {
         movies: true
     })
 
+    const typeClickedContext = useContext(TypeClickedContext);
+
     return (
         <nav className='nav-types-movies'>
             <ul>
@@ -20,7 +23,9 @@ const NavTypesMovies: React.FC<Props> = (props) => {
                     setActive({
                         tvSeries: true,
                         movies: false
-                    })
+                    });
+
+                    typeClickedContext.updateType('series');
                 }}>
                     TV Series
                 </li>
@@ -30,6 +35,8 @@ const NavTypesMovies: React.FC<Props> = (props) => {
                         tvSeries: false,
                         movies: true
                     })
+
+                    typeClickedContext.updateType('movies');
                 }}>
                     Movies
                 </li>

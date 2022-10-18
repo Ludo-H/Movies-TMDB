@@ -41,8 +41,8 @@ const MostVotedSeries = () => {
 
     return (
         <Carousel
-            className='testcarousel'
-            width={650}
+            className='carousel-mostVoted'
+            width={750}
             showThumbs={false}
             showStatus={false}
             centerMode

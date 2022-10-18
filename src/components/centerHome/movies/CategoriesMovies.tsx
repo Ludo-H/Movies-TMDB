@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import CategorieMovie from './CategorieMovie';
 
 type categorieMovie = {
@@ -26,13 +26,13 @@ const CategoriesMovies = () => {
     }, [])
 
     return (
-        <div>
+        <Fragment>
             {categoriesMovies && categoriesMovies.map((categorie)=>{
                 return(
                     <CategorieMovie key={categorie.id} categorie={categorie}/>
                 )
             })}
-        </div>
+        </Fragment>
     );
 };
 
