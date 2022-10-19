@@ -1,12 +1,13 @@
 import React, { Fragment } from 'react';
 import Routes from './components/Routes/Index';
+import FavoritesProvider from './store/FavoritesProvider';
 
 const App = () => {
 
   return (
-    <Fragment>
+    <FavoritesProvider>
       <Routes/>
-    </Fragment>
+    </FavoritesProvider>
   );
 };
 

@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import Input from './UI/Input';
 import TypeClickedContext from "../store/typeClicked-context";
 import axios from 'axios';
+import { NavLink } from 'react-router-dom';
 
 type moviesOrSeries = {
     adult: boolean;
@@ -56,10 +57,12 @@ const RightSideBar = () => {
                 <h3>Popular {typeClickedContext.type}</h3>
                 {moviesOrSeries && moviesOrSeries.map((popularItem)=>{
                     return (
+                        <NavLink key={popularItem.id} to={`/${typeClickedContext.type === 'movies' ? 'movie' : 'tv'}/${popularItem.id}`} >
                         <div key={popularItem.id} className='popular__list__item'>
                             <p>{popularItem.title || popularItem.name}</p>
                             <img src={`https://image.tmdb.org/t/p/w400/${popularItem.poster_path}`} alt="poster" />
                         </div>
+                        </NavLink>
                     )
                 })}
             </div>
