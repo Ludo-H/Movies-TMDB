@@ -27,41 +27,66 @@ const RightSideBar = () => {
 
     const [moviesOrSeries, setMoviesOrSeries] = useState<moviesOrSeries[]>()
 
+    const [searchItem, setSearchItem] = useState("")
+    const [itemsToSearch, setItemToSearch] = useState<moviesOrSeries[]>()
+
     const typeClickedContext = useContext(TypeClickedContext);
 
     useEffect(() => {
-        const fetchMoviesOrSeries = async () =>{
+        const fetchMoviesOrSeries = async () => {
             try {
-                if(typeClickedContext.type === "movies"){
+                if (typeClickedContext.type === "movies") {
                     const data = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY_TMDB}&language=en-US&sort_by=popularity.desc`);
-                    const dataToDisplay: [moviesOrSeries] = data.data.results.slice(0,5);
+                    const dataToDisplay: [moviesOrSeries] = data.data.results.slice(0, 5);
                     setMoviesOrSeries(dataToDisplay);
-                }else{
+                } else {
                     const data = await axios.get(`https://api.themoviedb.org/3/discover/tv?api_key=${process.env.REACT_APP_API_KEY_TMDB}&language=en-US&sort_by=popularity.desc`);
-                    const dataToDisplay: [moviesOrSeries] = data.data.results.slice(0,5);
+                    const dataToDisplay: [moviesOrSeries] = data.data.results.slice(0, 5);
                     setMoviesOrSeries(dataToDisplay);
-                }                
+                }
             } catch (error) {
                 console.log(error);
             }
         }
         fetchMoviesOrSeries();
-      
+
     }, [typeClickedContext.type])
-    
+
+    const handleSearchItem = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        try {
+            let value = e.target.value;
+            setSearchItem(value);
+
+            const data = await axios.get(`https://api.themoviedb.org/3/search/${typeClickedContext.type === "movies" ? 'movie' : 'tv'}?api_key=${process.env.REACT_APP_API_KEY_TMDB}&query=${searchItem}&language=en-US&sort_by=popularity.desc`)
+            setItemToSearch(data.data.results);
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
 
     return (
         <div className='right-side-bar'>
-            <Input input={{type: 'search', placeholder: 'Search'}}/>
+            <Input input={{ type: 'search', placeholder: 'Search', }} onChange={handleSearchItem} />
+            <div className='search-results'>
+                {searchItem && itemsToSearch?.map((item) => {
+                    return (
+                        <NavLink key={item.id} to={`/${typeClickedContext.type === 'movies' ? 'movie' : 'tv'}/${item.id}`} >
+                            <p>{item.title || item.name}</p>
+                        </NavLink>
+                    )
+                })}
+            </div>
             <div className='popular__list'>
                 <h3>Popular {typeClickedContext.type}</h3>
-                {moviesOrSeries && moviesOrSeries.map((popularItem)=>{
+                {moviesOrSeries && moviesOrSeries.map((popularItem) => {
                     return (
                         <NavLink key={popularItem.id} to={`/${typeClickedContext.type === 'movies' ? 'movie' : 'tv'}/${popularItem.id}`} >
-                        <div key={popularItem.id} className='popular__list__item'>
-                            <p>{popularItem.title || popularItem.name}</p>
-                            <img src={`https://image.tmdb.org/t/p/w400/${popularItem.poster_path}`} alt="poster" />
-                        </div>
+                            <div key={popularItem.id} className='popular__list__item'>
+                                <p>{popularItem.title || popularItem.name}</p>
+                                <img src={`https://image.tmdb.org/t/p/w400/${popularItem.poster_path}`} alt="poster" />
+                            </div>
                         </NavLink>
                     )
                 })}

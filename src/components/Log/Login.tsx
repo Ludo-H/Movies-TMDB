@@ -2,6 +2,7 @@ import React, { FormEvent, Fragment, useRef, useState } from 'react';
 import {signInWithEmailAndPassword} from 'firebase/auth'
 import { auth } from '../../utils/firebase.config';
 import Input from '../UI/Input';
+import bcrypt from "bcryptjs";
 
 const Login = () => {
 
@@ -23,17 +24,45 @@ const Login = () => {
     const handleLogin = async (e: FormEvent) => {
         e.preventDefault();
 
-        try {
-            await signInWithEmailAndPassword(auth, loginEmail.current!.value, loginPassword.current!.value);
-                    
-            // on envoie sur la page home
+        // On récupère les données hasher du LS
+        const email = loginEmail.current!.value;
+        const password = loginPassword.current!.value;
 
-            window.location.href = '/home';
+        const getHashedEmail = JSON.parse(localStorage.getItem('login')!).hashedEmail;
+        const getHashedPassword = JSON.parse(localStorage.getItem('login')!).hashedPassword;
+
+        bcrypt.compare(email, getHashedEmail, (err: Error, isMatch: boolean) => {
+            if(err){
+                console.log(err);
+            } else if(!isMatch){
+                console.log("mail incorrect")
+            }else{
+                console.log('mail Correct');
+            }
+        })
+
+        bcrypt.compare(password, getHashedPassword, (err: Error, isMatch: boolean) => {
+            if(err){
+                console.log(err);
+            } else if(!isMatch){
+                console.log("MDP incorrect")
+            }else{
+                console.log('MDP Correct');
+            }
+        })
+
+
+        // try {
+        //     await signInWithEmailAndPassword(auth, loginEmail.current!.value, loginPassword.current!.value);
+                    
+        //     // on envoie sur la page home
+
+        //     window.location.href = '/home';
              
-        } catch (error) {
-            console.log(error);
-            setError(true);
-        }
+        // } catch (error) {
+        //     console.log(error);
+        //     setError(true);
+        // }
     }
     /***************************************************************/
 
