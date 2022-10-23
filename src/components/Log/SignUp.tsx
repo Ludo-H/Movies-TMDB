@@ -5,6 +5,7 @@ import Input from '../UI/Input';
 
 // Pour ne pas avoir d'erreur avec ce package
 // Soit : voir node_modules @types, typings, ficher index avec declare module, puis typer les param par exemple
+// Ne pas oublier de rajouter le typeroots dans tsconfig
 // Soit : "noImplicitAny": false dans le tsconfig, mais ducoup agit sur tout le reste du projet
 
 import bcrypt from "bcryptjs";
